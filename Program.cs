@@ -15,10 +15,10 @@ meow
 
 1. one // doesnt work
 2. two
+3. three
 
 - one // WORKS
 - two
-<<<<<<< HEAD
 - three
 
 ```
