@@ -7,21 +7,20 @@ static List<TMPItem> ConvertMarkdownToTMP(string markdownText) {
     return renderer.Render(document);
 }
 
-List<TMPItem> items = ConvertMarkdownToTMP(@"# meow
+List<TMPItem> items = ConvertMarkdownToTMP(
+@"# meow
+## meow
+##### meow
 meow
 
 1. one // doesnt work
 2. two
-3. three
 
 - one // WORKS
 - two
-- three
 ");
 
 foreach (var item in items)
-{
     Console.WriteLine(item);
-}
-
-Console.WriteLine();
+    
+//Console.ReadLine();

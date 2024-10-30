@@ -4,7 +4,7 @@ using Markdig.Syntax.Inlines;
 
 public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
 
-    public List<TMPItem> Items = new List<TMPItem>();
+    public List<TMPItem> Items = [];
 
     public TextMeshProRenderer(): base(new StringWriter()) {
         // Block renderers
@@ -20,7 +20,7 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
     {
         object value = base.Render(markdownObject);
 
-        List<TMPItem> items = new List<TMPItem>();
+        List<TMPItem> items = [];
 
         string text = "";
 
@@ -28,12 +28,10 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
         {
 
             if (item is TMPTextItem textItem)
-            {
-                text += textItem.Text;
-            } else if (item is TMPImageItem imageItem)
+                text += textItem.Text + "\n";
+            else if (item is TMPImageItem imageItem)
             {
                 if (text != "") items.Add(new TMPTextItem(text));
-
                 items.Add(imageItem);
             }
         }
@@ -51,18 +49,17 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
     }
 }
 
-public abstract class TextMeshProObjectRenderer<TObject>: MarkdownObjectRenderer<TextMeshProRenderer, TObject> where TObject: MarkdownObject {
-}
+public abstract class TextMeshProObjectRenderer<TObject>: MarkdownObjectRenderer<TextMeshProRenderer, TObject> where TObject: MarkdownObject;
 
 public class HeadingRenderer : TextMeshProObjectRenderer<HeadingBlock> {
 
     protected override void Write(TextMeshProRenderer renderer, HeadingBlock obj) {
 
-        int sizeIncrease = obj.Level * 2;
+        int sizeIncrease = 50 / obj.Level + 100;
 
-        renderer.Write("<size=+" + sizeIncrease.ToString() + ">");
+        renderer.Write("<b><size=" + sizeIncrease + "%>");
         renderer.WriteLeafInline(obj);
-        renderer.Write("</size>");
+        renderer.Write("</size></b>");
 
         renderer.AddItem();
     }
@@ -92,7 +89,8 @@ public class ListRenderer : TextMeshProObjectRenderer<ListBlock>
     {
         foreach (ListItemBlock listItemBlock in obj)
         {
-            renderer.Write(obj.BulletType + "<space=1em>");
+            renderer.Write("<space=1em>");
+            renderer.Write(obj.BulletType + ")  ");
             renderer.Write(listItemBlock);
         }
     }

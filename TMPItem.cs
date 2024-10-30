@@ -20,7 +20,7 @@ public class TMPTextItem : TMPItem
 
     public override string ToString()
     {
-        return "TEXT: " + Text;
+        return Text;
     }
 }
 
