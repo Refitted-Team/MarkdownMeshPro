@@ -15,10 +15,10 @@ meow
 
 1. one // doesnt work
 2. two
-3. three
 
 - one // WORKS
 - two
+<<<<<<< HEAD
 - three
 
 ```
@@ -38,6 +38,5 @@ _I_
 ");
 
 foreach (var item in items)
-{
     Console.WriteLine(item);
 }
