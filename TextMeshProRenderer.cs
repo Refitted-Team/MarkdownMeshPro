@@ -10,7 +10,7 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
     {
         var pipeline = new MarkdownPipelineBuilder().Build();
         var renderer = new TextMeshProRenderer();
-        var document = Markdown.Parse(markdownText, pipeline);
+        var document = Markdown.Parse(markdownText.Replace("\n\n", "<br>").Replace("\n", ""), pipeline);
         return renderer.Render(document);
     }
 
