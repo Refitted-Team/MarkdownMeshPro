@@ -1,18 +1,27 @@
 ﻿using Markdig;
 
-static string ConvertMarkdownToTMP(string markdownText) {
+static List<TMPItem> ConvertMarkdownToTMP(string markdownText) {
     var pipeline = new MarkdownPipelineBuilder().Build();
-    using var writer = new StringWriter();
-    var renderer = new TextMeshProRenderer(writer);
+    var renderer = new TextMeshProRenderer();
     var document = Markdown.Parse(markdownText, pipeline);
-    renderer.Render(document);
-    return writer.ToString();
+    return renderer.Render(document);
 }
 
-Console.WriteLine( ConvertMarkdownToTMP(@"# meow
+List<TMPItem> items = ConvertMarkdownToTMP(@"# meow
 meow
 
 1. one // doesnt work
 2. two
 3. three
-"));
+
+- one // WORKS
+- two
+- three
+");
+
+foreach (var item in items)
+{
+    Console.WriteLine(item);
+}
+
+Console.WriteLine();
