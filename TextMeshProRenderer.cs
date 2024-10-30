@@ -70,14 +70,14 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
             {
                 if (text != "")
                 {
-                    items.Add(new TMPTextItem(text));
+                    items.Add(new TMPTextItem(text.Replace("\n", "")));
                     text = "";
                 }
                 items.Add(imageItem);
             }
         }
 
-        if (text != "") items.Add(new TMPTextItem(text));
+        if (text != "") items.Add(new TMPTextItem(text.Replace("\n", "")));
 
         return items;
     }
@@ -187,6 +187,7 @@ public class CodeRenderer : TextMeshProObjectRenderer<CodeBlock>
         //renderer.Write("<font=\"MonospaceFont\">");
         renderer.WriteLeafRawLines(obj, true);
         //renderer.Write("</font>");
+        renderer.Write("<br>");
 
         renderer.AddItem();
     }
@@ -200,6 +201,7 @@ public class CodeInlineRenderer : TextMeshProObjectRenderer<CodeInline>
         //renderer.Write("<font=\"MonospaceFont\">");
         renderer.Write(obj.ContentSpan);
         //renderer.Write("</font>");
+        renderer.Write("<br>");
 
         renderer.AddItem();
     }

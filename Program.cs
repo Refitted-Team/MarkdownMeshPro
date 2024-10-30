@@ -1,13 +1,6 @@
 ﻿using Markdig;
 
-static List<TMPItem> ConvertMarkdownToTMP(string markdownText) {
-    var pipeline = new MarkdownPipelineBuilder().Build();
-    var renderer = new TextMeshProRenderer();
-    var document = Markdown.Parse(markdownText, pipeline);
-    return renderer.Render(document);
-}
-
-List<TMPItem> items = ConvertMarkdownToTMP(@"# meow
+List<TMPItem> items = TextMeshProRenderer.RenderToTMPItems(@"# meow
 ## meow
 ### meow
 #### meow
