@@ -163,22 +163,18 @@ public class ListRenderer : TextMeshProObjectRenderer<ListBlock>
 {
     protected override void Write(TextMeshProRenderer renderer, ListBlock obj)
     {
-        if (obj.BulletType.Equals('1'))
+        foreach (ListItemBlock listItemBlock in obj)
         {
-            foreach (ListItemBlock listItemBlock in obj)
+            renderer.Write("<space=1em>");
+            if (obj.BulletType.Equals('1'))
             {
                 renderer.Write((obj.IndexOf(listItemBlock) + 1).ToString() + ")  ");
-                renderer.Write(listItemBlock);
-                renderer.Write("<br>");
-            }
-        } else
-        {
-            foreach (ListItemBlock listItemBlock in obj)
+            } else
             {
                 renderer.Write(obj.BulletType + ")  ");
-                renderer.Write(listItemBlock);
-                renderer.Write("<br>");
             }
+            renderer.Write(listItemBlock);
+            renderer.Write("<br>");
         }
     }
 }
