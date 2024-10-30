@@ -8,6 +8,9 @@ static List<TMPItem> ConvertMarkdownToTMP(string markdownText) {
 }
 
 List<TMPItem> items = ConvertMarkdownToTMP(@"# meow
+## meow
+### meow
+#### meow
 meow
 
 1. one // doesnt work
@@ -17,11 +20,24 @@ meow
 - one // WORKS
 - two
 - three
+
+```
+GAY
+```
+
+`This is code!`
+
+[Google](https://google.com/)
+
+> I quote thee!!
+
+_I_
+*I*
+**B**
+***IB***
 ");
 
 foreach (var item in items)
 {
     Console.WriteLine(item);
 }
-
-Console.WriteLine();
