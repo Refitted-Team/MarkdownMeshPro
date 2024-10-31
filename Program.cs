@@ -1,11 +1,22 @@
-﻿List<TMPItem> items = TextMeshProRenderer.RenderToTMPItems(@"# meow
+﻿using Markdig;
+
+static string ConvertMarkdownToTMP(string markdownText) {
+    var pipeline = new MarkdownPipelineBuilder().Build();
+    using var writer = new StringWriter();
+    var renderer = new MarkdownMeshProRenderer(writer);
+    var document = Markdown.Parse(markdownText, pipeline);
+    renderer.Render(document);
+    return writer.ToString();
+}
+
+Console.WriteLine(ConvertMarkdownToTMP(@"# meow
 ## meow
 ### meow
 #### meow
 meow
 
 1. one 
-2. two
+1. two
 
 - one
 - two
@@ -13,6 +24,8 @@ meow
 ```
 GAY
 ```
+
+https://meow.com
 
 `This is code!`
 
@@ -24,8 +37,4 @@ _I_
 *I*
 **B**
 ***IB***
-");
-
-foreach (var item in items) {
-    Console.WriteLine(item);
-}
+"));

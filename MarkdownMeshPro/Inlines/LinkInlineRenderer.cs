@@ -1,0 +1,69 @@
+// Copyright (c) Alexandre Mutel. All rights reserved.
+// This file is licensed under the BSD-Clause 2 license. 
+// See the license.txt file in the project root for more information.
+
+using Markdig.Syntax.Inlines;
+
+/// <summary>
+/// A Normalize renderer for a <see cref="LinkInline"/>.
+/// </summary>
+/// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
+public class LinkInlineRenderer : MarkdownMeshProObjectRenderer<LinkInline>
+{
+    protected override void Write(MarkdownMeshProRenderer renderer, LinkInline link)
+    {
+        /*renderer.Write("<color=#1D7CEAFF>");
+        renderer.Write("<link=\"" + link.Url + "\">");
+        renderer.WriteChildren(link);
+        renderer.Write("</link></color>");*/
+
+        // TODO:
+        
+        if (link.IsAutoLink && !renderer.Options.ExpandAutoLinks)
+        {
+            renderer.Write(link.Url);
+            return;
+        }
+
+        if (link.IsImage)
+        {
+            renderer.Write('!');
+        }
+        renderer.Write('[');
+        renderer.WriteChildren(link);
+        renderer.Write(']');
+
+        if (link.Label != null)
+        {
+            if (link.FirstChild is LiteralInline literal && literal.Content.Length == link.Label.Length && literal.Content.Match(link.Label))
+            {
+                // collapsed reference and shortcut links
+                if (!link.IsShortcut)
+                {
+                    renderer.Write("[]");
+                }
+            }
+            else
+            {
+                // full link
+                renderer.Write('[').Write(link.Label).Write(']');
+            }
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(link.Url))
+            {
+                renderer.Write('(').Write(link.Url);
+
+                if (link.Title is { Length: > 0 })
+                {
+                    renderer.Write(" \"");
+                    renderer.Write(link.Title.Replace(@"""", @"\"""));
+                    renderer.Write('"');
+                }
+
+                renderer.Write(')');
+            }
+        }
+    }
+}
