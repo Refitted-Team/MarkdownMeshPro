@@ -14,15 +14,9 @@ public class CodeBlockRenderer : MarkdownMeshProObjectRenderer<CodeBlock>
 
     protected override void Write(MarkdownMeshProRenderer renderer, CodeBlock obj)
     {
-        //renderer.Write("<font=\"MonospaceFont\">");
-        //renderer.WriteLeafRawLines(obj, true); //TODO:
-        //renderer.Write("</font>");
-        
         if (obj is FencedCodeBlock fencedCodeBlock)
         {
-            int fencedCharCount = Math.Min(fencedCodeBlock.OpeningFencedCharCount, fencedCodeBlock.ClosingFencedCharCount);
-
-            renderer.Write(fencedCodeBlock.FencedChar, fencedCharCount);
+            renderer.Write("<mark=#0000003C padding=\"25,25,3,0\">");
             if (fencedCodeBlock.Info != null)
             {
                 renderer.Write(fencedCodeBlock.Info);
@@ -32,23 +26,13 @@ public class CodeBlockRenderer : MarkdownMeshProObjectRenderer<CodeBlock>
                 renderer.Write(' ').Write(fencedCodeBlock.Arguments);
             }
 
-            /* TODO do we need this causes a empty space and would render html attributes to markdown.
-            var attributes = obj.TryGetAttributes();
-            if (attributes != null)
-            {
-                renderer.Write(' ');
-                renderer.Write(attributes);
-            }
-            */
             renderer.WriteLine();
 
             renderer.WriteLeafRawLines(obj, true);
-            renderer.Write(fencedCodeBlock.FencedChar, fencedCharCount);
+            renderer.Write("</mark>");
         }
         else
-        {
             renderer.WriteLeafRawLines(obj, false, true);
-        }
 
         renderer.FinishBlock(renderer.Options.EmptyLineAfterCodeBlock);
     }

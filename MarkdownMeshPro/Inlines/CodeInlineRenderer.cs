@@ -11,12 +11,14 @@ using Markdig.Syntax.Inlines;
 public class CodeInlineRenderer : MarkdownMeshProObjectRenderer<CodeInline>
 {
     protected override void Write(MarkdownMeshProRenderer renderer, CodeInline obj)
-    {
-        //renderer.Write("<font=\"MonospaceFont\">");
-        //renderer.Write(obj.ContentSpan); //todo:
-        //renderer.Write("</font>");
+    {/*
+        @"<space=0.3em><mark=#0000003C padding="25,25,0,0">This is code!</mark><space=0.3em>"*/
         
-        var delimiterCount = 0;
+        renderer.Write("<space=0.3em><mark=#0000003C padding=\"25,25,0,0\">");
+        renderer.Write(obj.Content);
+        renderer.Write("</mark><space=0.3em>");
+        
+        /*var delimiterCount = 0;
         string content = obj.Content;
         for (var i = 0; i < content.Length; i++)
         {
@@ -51,6 +53,6 @@ public class CodeInlineRenderer : MarkdownMeshProObjectRenderer<CodeInline>
         {
             renderer.Write(' ');
         }
-        renderer.Write(obj.Delimiter, delimiterCount + 1);
+        renderer.Write(obj.Delimiter, delimiterCount + 1);*/
     }
 }
