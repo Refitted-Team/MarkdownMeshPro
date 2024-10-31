@@ -1,18 +1,14 @@
-﻿using Markdig;
-
-List<TMPItem> items = TextMeshProRenderer.RenderToTMPItems(@"# meow
+﻿List<TMPItem> items = TextMeshProRenderer.RenderToTMPItems(@"# meow
 ## meow
 ### meow
 #### meow
 meow
 
-1. one // doesnt work
+1. one 
 2. two
-3. three
 
-- one // WORKS
+- one
 - two
-- three
 
 ```
 GAY

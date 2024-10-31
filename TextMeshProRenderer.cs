@@ -10,7 +10,7 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
     {
         var pipeline = new MarkdownPipelineBuilder().Build();
         var renderer = new TextMeshProRenderer();
-        var document = Markdown.Parse(markdownText.Replace("\n\n", "<br>").Replace("\n", ""), pipeline);
+        var document = Markdown.Parse(markdownText, pipeline);
         return renderer.Render(document);
     }
 
@@ -70,14 +70,14 @@ public class TextMeshProRenderer: TextRendererBase<TextMeshProRenderer> {
             {
                 if (text != "")
                 {
-                    items.Add(new TMPTextItem(text.Replace("\n", "")));
+                    items.Add(new TMPTextItem(text));
                     text = "";
                 }
                 items.Add(imageItem);
             }
         }
 
-        if (text != "") items.Add(new TMPTextItem(text.Replace("\n", "")));
+        if (text != "") items.Add(new TMPTextItem(text));
 
         return items;
     }
@@ -131,9 +131,9 @@ public class HeadingRenderer : TextMeshProObjectRenderer<HeadingBlock> {
 
         int sizeIncrease = 50 / obj.Level + 100;
 
-        renderer.Write("<b><size=+" + sizeIncrease.ToString() + ">");
+        renderer.Write("<b><size=" + sizeIncrease + "%>");
         renderer.WriteLeafInline(obj);
-        renderer.Write("</size></b><br>");
+        renderer.Write("</size></b>");
 
         renderer.AddItem();
     }
@@ -144,8 +144,6 @@ public class LiteralInlineRenderer : TextMeshProObjectRenderer<LiteralInline>
     protected override void Write(TextMeshProRenderer renderer, LiteralInline obj)
     {
         renderer.Write(ref obj.Content);
-
-        renderer.AddItem();
     }
 }
 
@@ -167,15 +165,12 @@ public class ListRenderer : TextMeshProObjectRenderer<ListBlock>
         {
             renderer.Write("<space=1em>");
             if (obj.BulletType.Equals('1'))
-            {
-                renderer.Write((obj.IndexOf(listItemBlock) + 1).ToString() + ")  ");
-            } else
-            {
+                renderer.Write(obj.IndexOf(listItemBlock) + 1 + ")");
+            else
                 renderer.Write(obj.BulletType + ")  ");
-            }
             renderer.Write(listItemBlock);
-            renderer.Write("<br>");
         }
+        renderer.Write("\n");
     }
 }
 
@@ -187,7 +182,6 @@ public class CodeRenderer : TextMeshProObjectRenderer<CodeBlock>
         //renderer.Write("<font=\"MonospaceFont\">");
         renderer.WriteLeafRawLines(obj, true);
         //renderer.Write("</font>");
-        renderer.Write("<br>");
 
         renderer.AddItem();
     }
@@ -201,7 +195,6 @@ public class CodeInlineRenderer : TextMeshProObjectRenderer<CodeInline>
         //renderer.Write("<font=\"MonospaceFont\">");
         renderer.Write(obj.ContentSpan);
         //renderer.Write("</font>");
-        renderer.Write("<br>");
 
         renderer.AddItem();
     }
