@@ -16,7 +16,9 @@ public class CodeBlockRenderer : MarkdownMeshProObjectRenderer<CodeBlock>
     {
         if (obj is FencedCodeBlock fencedCodeBlock)
         {
-            renderer.Write("<mark=#0000003C padding=\"25,25,3,0\">");
+            renderer.Write("<mark=#0000003C padding=\"25,20000,3.26,0\">" 
+                           //+ "<font=Miracode SDF>"
+                           );
             if (fencedCodeBlock.Info != null)
             {
                 renderer.Write(fencedCodeBlock.Info);
@@ -29,7 +31,9 @@ public class CodeBlockRenderer : MarkdownMeshProObjectRenderer<CodeBlock>
             renderer.WriteLine();
 
             renderer.WriteLeafRawLines(obj, true);
-            renderer.Write("</mark>");
+            renderer.Write("</mark>" 
+                           //+ "</font>"
+                           );
         }
         else
             renderer.WriteLeafRawLines(obj, false, true);
