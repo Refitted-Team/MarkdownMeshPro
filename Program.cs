@@ -1,15 +1,4 @@
-﻿using Markdig;
-
-static string ConvertMarkdownToTMP(string markdownText) {
-    var pipeline = new MarkdownPipelineBuilder().Build();
-    using var writer = new StringWriter();
-    var renderer = new MarkdownMeshProRenderer(writer);
-    var document = Markdown.Parse(markdownText, pipeline);
-    renderer.Render(document);
-    return writer.ToString();
-}
-
-Console.WriteLine(ConvertMarkdownToTMP(@"# meow
+﻿Console.WriteLine(MarkdownMeshProRenderer.MarkdownToRichTags(@"# meow
 ## meow
 ### meow
 #### meow
@@ -38,3 +27,5 @@ _I_
 **B**
 ***IB***
 "));
+
+Console.ReadLine();

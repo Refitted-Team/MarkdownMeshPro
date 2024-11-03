@@ -2,6 +2,7 @@
 // This file is licensed under the BSD-Clause 2 license. 
 // See the license.txt file in the project root for more information.
 
+using Markdig;
 using Markdig.Syntax;
 using Markdig.Renderers;
 
@@ -11,6 +12,15 @@ using Markdig.Renderers;
 /// <seealso cref="TextRendererBase" />
 public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
 {
+    public static string MarkdownToRichTags(string markdownText) {
+        var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+        using var writer = new StringWriter();
+        var renderer = new MarkdownMeshProRenderer(writer);
+        var document = Markdown.Parse(markdownText, pipeline);
+        renderer.Render(document);
+        return writer.ToString();
+    }
+    
     /// <summary>
     /// Initializes a new instance of the <see cref="MarkdownMeshProRenderer"/> class.
     /// </summary>

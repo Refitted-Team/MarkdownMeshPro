@@ -8,10 +8,10 @@ public class LinkReferenceDefinitionRenderer : MarkdownMeshProObjectRenderer<Lin
 {
     protected override void Write(MarkdownMeshProRenderer renderer, LinkReferenceDefinition linkDef)
     {
-        renderer.EnsureLine();
+        /*renderer.EnsureLine();
         renderer.Write('[');            
         renderer.Write(linkDef.Label);
-        renderer.Write("]: ");
+        renderer.Write("]: ");*/
 
         renderer.Write(linkDef.Url);
 
@@ -21,6 +21,6 @@ public class LinkReferenceDefinitionRenderer : MarkdownMeshProObjectRenderer<Lin
             renderer.Write(linkDef.Title.Replace("\"", "\\\""));
             renderer.Write('"');
         }
-        renderer.FinishBlock(false);
+        //renderer.FinishBlock(false);
     }
 }

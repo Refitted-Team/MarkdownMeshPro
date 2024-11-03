@@ -12,14 +12,12 @@ public class LinkInlineRenderer : MarkdownMeshProObjectRenderer<LinkInline>
 {
     protected override void Write(MarkdownMeshProRenderer renderer, LinkInline link)
     {
-        /*renderer.Write("<color=#1D7CEAFF>");
+        renderer.Write("<color=#1D7CEAFF>");
         renderer.Write("<link=\"" + link.Url + "\">");
         renderer.WriteChildren(link);
-        renderer.Write("</link></color>");*/
+        renderer.Write("</link></color>");
 
-        // TODO:
-        
-        if (link.IsAutoLink && !renderer.Options.ExpandAutoLinks)
+        /*if (link.IsAutoLink && !renderer.Options.ExpandAutoLinks)
         {
             renderer.Write(link.Url);
             return;
@@ -64,6 +62,6 @@ public class LinkInlineRenderer : MarkdownMeshProObjectRenderer<LinkInline>
 
                 renderer.Write(')');
             }
-        }
+        }*/
     }
 }

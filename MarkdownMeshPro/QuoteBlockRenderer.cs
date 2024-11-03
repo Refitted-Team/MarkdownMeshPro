@@ -12,13 +12,9 @@ public class QuoteBlockRenderer : MarkdownMeshProObjectRenderer<QuoteBlock>
 {
     protected override void Write(MarkdownMeshProRenderer renderer, QuoteBlock obj)
     {
-        renderer.Write("<space=1rem>");
+        renderer.PushIndent("|<space=1rem>");
         renderer.WriteChildren(obj);
-        
-        /*var quoteIndent = renderer.Options.SpaceAfterQuoteBlock ? obj.QuoteChar + " " : obj.QuoteChar.ToString();
-        renderer.PushIndent(quoteIndent);
-        renderer.WriteChildren(obj);
-        renderer.PopIndent();*/
+        renderer.PopIndent();
 
         renderer.FinishBlock(true);
     }
