@@ -12,10 +12,12 @@ using Markdig.Renderers;
 /// <seealso cref="TextRendererBase" />
 public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
 {
-    public static string MarkdownToRichTags(string markdownText) {
+    public string processingText;
+    public static string MarkdownToRichTags(string markdownText)
+    {
         var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
         using var writer = new StringWriter();
-        var renderer = new MarkdownMeshProRenderer(writer);
+        var renderer = new MarkdownMeshProRenderer(markdownText, writer);
         var document = Markdown.Parse(markdownText, pipeline);
         renderer.Render(document);
         return writer.ToString();
@@ -26,8 +28,10 @@ public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
     /// </summary>
     /// <param name="writer">The writer.</param>
     /// <param name="options">The MarkdownMeshPro options</param>
-    public MarkdownMeshProRenderer(TextWriter writer, MarkdownMeshProOptions? options = null) : base(writer)
+    public MarkdownMeshProRenderer(string sourceProcessingText, TextWriter writer, MarkdownMeshProOptions? options = null) : base(writer)
     {
+        processingText = sourceProcessingText;
+        
         Options = options ?? new MarkdownMeshProOptions();
         // Default block renderers
         ObjectRenderers.Add(new CodeBlockRenderer());
@@ -39,7 +43,8 @@ public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
         ObjectRenderers.Add(new ThematicBreakRenderer());
         ObjectRenderers.Add(new LinkReferenceDefinitionGroupRenderer());
         ObjectRenderers.Add(new LinkReferenceDefinitionRenderer());
-
+        ObjectRenderers.Add(new MarkdownMeshProTableRenderer());
+        
         // Default inline renderers
         ObjectRenderers.Add(new AutolinkInlineRenderer());
         ObjectRenderers.Add(new CodeInlineRenderer());
