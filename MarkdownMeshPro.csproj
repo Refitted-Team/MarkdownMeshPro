@@ -11,4 +11,26 @@
       <PackageReference Include="Markdig" Version="0.38.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Renderer\RendererInlineLink.cs" />
+      <Compile Remove="Renderer\RendererInlineHtmlEntity.cs" />
+      <Compile Remove="Renderer\RendererInlineHtml.cs" />
+      <Compile Remove="Renderer\RendererInlineDelimiter.cs" />
+      <Compile Remove="Renderer\RendererInlineCode.cs" />
+      <Compile Remove="Renderer\RendererBlockQuote.cs" />
+      <Compile Remove="Renderer\RendererBlockParagraph.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Renderer\RendererInlineLineBreak.cs.meta" />
+      <None Remove="Renderer\RendererInlineHtmlEntity.cs.meta" />
+      <None Remove="Renderer\RendererInlineEmphasis.cs.meta" />
+      <None Remove="Renderer\RendererInlineCode.cs.meta" />
+      <None Remove="Renderer\RendererInlineAutoLink.cs.meta" />
+      <None Remove="Renderer\RendererBlockThematicBreak.cs.meta" />
+      <None Remove="Renderer\RendererBlockList.cs.meta" />
+      <None Remove="Renderer\RendererBlockHtml.cs.meta" />
+      <None Remove="Renderer\RendererBlockHeading.cs.meta" />
+    </ItemGroup>
+
 </Project>
