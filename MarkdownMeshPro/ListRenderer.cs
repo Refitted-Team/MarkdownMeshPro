@@ -47,7 +47,7 @@ public class ListRenderer : MarkdownMeshProObjectRenderer<ListBlock>
                 renderer.EnsureLine();
                 renderer.Write("  ");
                 renderer.Write(index.ToString(CultureInfo.InvariantCulture));
-                renderer.Write(listBlock.OrderedDelimiter);
+                renderer.Write(renderer.Options.OrderedListDelimiter ?? listBlock.OrderedDelimiter);
                 renderer.Write(' ');
                 renderer.PushIndent(new string(' ', IntLog10Fast(index) + 3));
                 renderer.WriteChildren(listItem);

@@ -11,4 +11,4 @@ using Markdig.Syntax.Inlines;
 /// </summary>
 /// <typeparam name="TObject">The type of the object.</typeparam>
 /// <seealso cref="IMarkdownObjectRenderer" />
-public abstract class MarkdownMeshProObjectRenderer<TObject> : MarkdownObjectRenderer<MarkdownMeshProRenderer, TObject> where TObject : MarkdownObject;
+public abstract class MarkdownMeshProObjectRenderer<TObject> : MarkdownObjectRenderer<MarkdownMeshProRenderer, TObject> where TObject : MarkdownObject {}

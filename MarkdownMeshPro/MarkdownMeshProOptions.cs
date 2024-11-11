@@ -2,6 +2,7 @@
 // This file is licensed under the BSD-Clause 2 license. 
 // See the license.txt file in the project root for more information.
 
+#nullable enable
 /// <summary>
 /// Defines the options used by <see cref="MarkdownMeshProRenderer"/>
 /// </summary>
@@ -17,6 +18,7 @@ public class MarkdownMeshProOptions
         EmptyLineAfterHeading = true;
         EmptyLineAfterThematicBreak = true;
         ListItemCharacter = '•';
+        OrderedListDelimiter = null;
         MonospaceFont = null;
     }
 
@@ -45,6 +47,11 @@ public class MarkdownMeshProOptions
     /// </summary>
     public char? ListItemCharacter { get; set; }
 
+    /// <summary>
+    /// the delimiter character used after the ordered list number eg: <c>.</c>, <c>)</c> or <c>:</c>. Default is <c>null</c> to use the original character.
+    /// </summary>
+    public char? OrderedListDelimiter { get; set; }
+    
     /// <summary>
     /// path of the TMP font used for monospace. Default is <c>null</c> not using a monospace font.
     /// </summary>
