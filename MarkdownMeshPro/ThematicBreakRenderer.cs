@@ -5,7 +5,7 @@
 using Markdig.Syntax;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="ThematicBreakBlock"/>.
+/// A MarkdownMeshPro renderer for a <see cref="ThematicBreakBlock"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class ThematicBreakRenderer : MarkdownMeshProObjectRenderer<ThematicBreakBlock>

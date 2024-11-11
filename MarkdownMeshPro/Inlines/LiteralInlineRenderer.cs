@@ -6,7 +6,7 @@ using Markdig.Helpers;
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="LiteralInline"/>.
+/// A MarkdownMeshPro renderer for a <see cref="LiteralInline"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class LiteralInlineRenderer : MarkdownMeshProObjectRenderer<LiteralInline>

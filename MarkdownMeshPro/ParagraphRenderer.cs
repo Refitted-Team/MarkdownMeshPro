@@ -5,7 +5,7 @@
 using Markdig.Syntax;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="ParagraphBlock"/>.
+/// A MarkdownMeshPro renderer for a <see cref="ParagraphBlock"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class ParagraphRenderer : MarkdownMeshProObjectRenderer<ParagraphBlock>

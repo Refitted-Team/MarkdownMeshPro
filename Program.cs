@@ -1,4 +1,6 @@
-﻿string text = @"
+﻿using System.Diagnostics;
+
+string text = @"
 # Markdown syntax guide
 
 ## Headers
@@ -96,5 +98,9 @@ _I_
 **B**
 ***IB***
 ".Trim('\n');
-Console.WriteLine(MarkdownMeshProRenderer.MarkdownToRichTags(text));
-Console.ReadLine();
+
+MarkdownMeshProOptions options = new() { MonospaceFont = "Miracode SDF" };
+string convertedText = MarkdownMeshProRenderer.MarkdownToRichTags(text, options);
+Console.WriteLine(convertedText);
+File.WriteAllText("meow.txt", convertedText); // command prompt cant display bullets
+if (Console.ReadKey().Key == ConsoleKey.O) Process.Start("notepad.exe", "meow.txt");

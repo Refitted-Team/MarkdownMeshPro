@@ -16,8 +16,8 @@ public class MarkdownMeshProOptions
         EmptyLineAfterCodeBlock = true;
         EmptyLineAfterHeading = true;
         EmptyLineAfterThematicBreak = true;
-        ExpandAutoLinks = true;
-        ListItemCharacter = null;
+        ListItemCharacter = '•';
+        MonospaceFont = null;
     }
 
     /// <summary>
@@ -41,12 +41,12 @@ public class MarkdownMeshProOptions
     public bool EmptyLineAfterThematicBreak { get; set; }
 
     /// <summary>
-    /// The bullet character used for list items. Default is <c>null</c> leaving the original bullet character as-is.
+    /// The bullet character used for list items. Default is <c>•</c>, change to null to leave the original bullet character as-is.
     /// </summary>
     public char? ListItemCharacter { get; set; }
 
     /// <summary>
-    /// Expands AutoLinks to the normal inline representation. Default is <c>true</c>
+    /// path of the TMP font used for monospace. Default is <c>null</c> not using a monospace font.
     /// </summary>
-    public bool ExpandAutoLinks { get; set; }
+    public string? MonospaceFont { get; set; }
 }

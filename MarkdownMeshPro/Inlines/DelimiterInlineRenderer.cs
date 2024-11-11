@@ -5,7 +5,7 @@
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="DelimiterInline"/>.
+/// A MarkdownMeshPro renderer for a <see cref="DelimiterInline"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class DelimiterInlineRenderer : MarkdownMeshProObjectRenderer<DelimiterInline>

@@ -5,7 +5,7 @@
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for an <see cref="AutolinkInline"/>.
+/// A MarkdownMeshPro renderer for an <see cref="AutolinkInline"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{AutolinkInline}" />
 public class AutolinkInlineRenderer : MarkdownMeshProObjectRenderer<AutolinkInline>

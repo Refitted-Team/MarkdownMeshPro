@@ -5,13 +5,13 @@
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="LineBreakInline"/>.
+/// A MarkdownMeshPro renderer for a <see cref="LineBreakInline"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class LineBreakInlineRenderer : MarkdownMeshProObjectRenderer<LineBreakInline>
 {
     /// <summary>
-    /// Gets or sets a value indicating whether to render this softline break as a Normalize hardline break tag (&lt;br /&gt;)
+    /// Gets or sets a value indicating whether to render this softline break as a MarkdownMeshPro hardline break tag (&lt;br /&gt;)
     /// </summary>
     public bool RenderAsHardlineBreak { get; set; }
 

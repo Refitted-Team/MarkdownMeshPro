@@ -5,7 +5,7 @@
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="HtmlInline"/>.
+/// A MarkdownMeshPro renderer for a <see cref="HtmlInline"/>.
 /// </summary>
 public class MarkdownMeshProHtmlInlineRenderer : MarkdownMeshProObjectRenderer<HtmlInline>
 {

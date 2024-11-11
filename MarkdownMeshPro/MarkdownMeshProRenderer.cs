@@ -13,11 +13,11 @@ using Markdig.Renderers;
 public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
 {
     public string processingText;
-    public static string MarkdownToRichTags(string markdownText)
+    public static string MarkdownToRichTags(string markdownText, MarkdownMeshProOptions? options = null)
     {
         var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
         using var writer = new StringWriter();
-        var renderer = new MarkdownMeshProRenderer(markdownText, writer);
+        var renderer = new MarkdownMeshProRenderer(markdownText, writer, options);
         var document = Markdown.Parse(markdownText, pipeline);
         renderer.Render(document);
         return writer.ToString();

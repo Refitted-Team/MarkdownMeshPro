@@ -5,20 +5,19 @@
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="CodeInline"/>.
+/// A MarkdownMeshPro renderer for a <see cref="CodeInline"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class CodeInlineRenderer : MarkdownMeshProObjectRenderer<CodeInline>
 {
     protected override void Write(MarkdownMeshProRenderer renderer, CodeInline obj)
     {
-        renderer.Write("<space=0.3em><mark=#0000003C padding=\"25,25,0,0\">"
-            //+ "<font=Miracode SDF>"
-            );
+        renderer.Write("<space=0.3em><mark=#0000003C padding=\"25,25,0,0\">");
+        bool useFont = renderer.Options.MonospaceFont != null;    
+        if (useFont) renderer.Write($"<font=\"{renderer.Options.MonospaceFont}\">");
         renderer.Write(obj.Content);
-        renderer.Write("</mark><space=0.3em>"
-                       //+ "</font>"
-                       );
+        renderer.Write("</mark><space=0.3em>");
+        if (useFont) renderer.Write("</font>");
         
         /*var delimiterCount = 0;
         string content = obj.Content;

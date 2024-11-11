@@ -21,9 +21,9 @@ public class MarkdownMeshProTableRenderer : MarkdownMeshProObjectRenderer<Table>
     //BEEEG TODO
     protected override void Write(MarkdownMeshProRenderer renderer, Table table)
     {
-        renderer.Write("<space=0.3em><mark=#0000003C padding=\"25,25,0,0\">"
-            //+ "<font=Miracode SDF>"
-        );
+        renderer.Write("<space=0.3em><mark=#0000003C padding=\"25,25,0,0\">");
+        bool useFont = renderer.Options.MonospaceFont != null;    
+        if (useFont) renderer.Write($"<font=\"{renderer.Options.MonospaceFont}\">");
         renderer.WriteLine();
         bool didHeaders = false;
         int headerWidths = 0;
@@ -52,9 +52,8 @@ public class MarkdownMeshProTableRenderer : MarkdownMeshProObjectRenderer<Table>
         renderer.Write('=', headerWidths + 3);
         renderer.WriteLine();
         renderer.WriteLine();
-        renderer.Write("</mark>" 
-            //+ "</font>"
-        );
+        renderer.Write("</mark>");
+        if (useFont) renderer.Write("</font>");
         /*
         foreach (var rowObj in table)
         {

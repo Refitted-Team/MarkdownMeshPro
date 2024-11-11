@@ -6,7 +6,7 @@ using System.Globalization;
 using Markdig.Syntax;
 
 /// <summary>
-/// A Normalize renderer for a <see cref="ListBlock"/>.
+/// A MarkdownMeshPro renderer for a <see cref="ListBlock"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class ListRenderer : MarkdownMeshProObjectRenderer<ListBlock>
@@ -45,7 +45,7 @@ public class ListRenderer : MarkdownMeshProObjectRenderer<ListBlock>
                 var item = listBlock[i];
                 var listItem = (ListItemBlock) item;
                 renderer.EnsureLine();
-
+                renderer.Write("  ");
                 renderer.Write(index.ToString(CultureInfo.InvariantCulture));
                 renderer.Write(listBlock.OrderedDelimiter);
                 renderer.Write(' ');
@@ -72,8 +72,9 @@ public class ListRenderer : MarkdownMeshProObjectRenderer<ListBlock>
                 var item = listBlock[i];
                 var listItem = (ListItemBlock) item;
                 renderer.EnsureLine();
+                renderer.Write("  ");
                 renderer.Write(renderer.Options.ListItemCharacter ?? listBlock.BulletType);
-                renderer.Write(' ');
+                renderer.Write("  ");
                 renderer.PushIndent("  ");
                 renderer.WriteChildren(listItem);
                 renderer.PopIndent();

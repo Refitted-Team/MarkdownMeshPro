@@ -7,7 +7,7 @@ using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A base class for Normalize rendering <see cref="Block"/> and <see cref="Inline"/> Markdown objects.
+/// A base class for MarkdownMeshPro rendering <see cref="Block"/> and <see cref="Inline"/> Markdown objects.
 /// </summary>
 /// <typeparam name="TObject">The type of the object.</typeparam>
 /// <seealso cref="IMarkdownObjectRenderer" />

@@ -5,7 +5,7 @@
 using Markdig.Syntax;
 
 /// <summary>
-/// An Normalize renderer for a <see cref="CodeBlock"/> and <see cref="FencedCodeBlock"/>.
+/// A MarkdownMeshPro renderer for a <see cref="CodeBlock"/> and <see cref="FencedCodeBlock"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class CodeBlockRenderer : MarkdownMeshProObjectRenderer<CodeBlock>
@@ -16,24 +16,19 @@ public class CodeBlockRenderer : MarkdownMeshProObjectRenderer<CodeBlock>
     {
         if (obj is FencedCodeBlock fencedCodeBlock)
         {
-            renderer.Write("<mark=#0000003C padding=\"25,20000,3.26,0\">" 
-                           //+ "<font=Miracode SDF>"
-                           );
+            renderer.Write("<mark=#0000003C padding=\"25,20000,3.26,0\">");
+            bool useFont = renderer.Options.MonospaceFont != null;    
+            if (useFont) renderer.Write($"<font=\"{renderer.Options.MonospaceFont}\">");
             if (fencedCodeBlock.Info != null)
-            {
                 renderer.Write(fencedCodeBlock.Info);
-            }
             if (!string.IsNullOrEmpty(fencedCodeBlock.Arguments))
-            {
                 renderer.Write(' ').Write(fencedCodeBlock.Arguments);
-            }
 
             renderer.WriteLine();
 
             renderer.WriteLeafRawLines(obj, true);
-            renderer.Write("</mark>" 
-                           //+ "</font>"
-                           );
+            renderer.Write("</mark>");
+            if (useFont) renderer.Write("</font>");
         }
         else
             renderer.WriteLeafRawLines(obj, false, true);

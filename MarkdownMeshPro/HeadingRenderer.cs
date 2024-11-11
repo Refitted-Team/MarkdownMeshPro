@@ -4,7 +4,7 @@
 using Markdig.Syntax;
 
 /// <summary>
-/// An Normalize renderer for a <see cref="HeadingBlock"/>.
+/// A MarkdownMeshPro renderer for a <see cref="HeadingBlock"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class HeadingRenderer : MarkdownMeshProObjectRenderer<HeadingBlock>
@@ -13,10 +13,12 @@ public class HeadingRenderer : MarkdownMeshProObjectRenderer<HeadingBlock>
     {        
         int sizeIncrease = 50 / obj.Level + 100;
 
+        bool underline = obj.Level < 3;
+        if (underline) renderer.Write("<u>");
         renderer.Write("<b><size=" + sizeIncrease + "%>");
         renderer.WriteLeafInline(obj);
         renderer.Write("</size></b>\n");
-
+        if (underline) renderer.Write("</u>");
         //renderer.FinishBlock(renderer.Options.EmptyLineAfterHeading);
     }
 }

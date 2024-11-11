@@ -5,7 +5,7 @@
 using Markdig.Syntax.Inlines;
 
 /// <summary>
-/// A Normalize renderer for an <see cref="EmphasisInline"/>.
+/// A MarkdownMeshPro renderer for an <see cref="EmphasisInline"/>.
 /// </summary>
 /// <seealso cref="MarkdownMeshProObjectRenderer{TObject}" />
 public class EmphasisInlineRenderer : MarkdownMeshProObjectRenderer<EmphasisInline>
