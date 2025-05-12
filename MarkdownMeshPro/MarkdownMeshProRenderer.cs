@@ -43,6 +43,7 @@ public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
         ObjectRenderers.Add(new HeadingRenderer());
         ObjectRenderers.Add(new HtmlBlockRenderer());
         ObjectRenderers.Add(new ParagraphRenderer());
+        ObjectRenderers.Add(new AlertRenderer());
         ObjectRenderers.Add(new QuoteBlockRenderer());
         ObjectRenderers.Add(new ThematicBreakRenderer());
         ObjectRenderers.Add(new LinkReferenceDefinitionGroupRenderer());
@@ -71,9 +72,7 @@ public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
         {
             WriteLine();
             if (emptyLine)
-            {
                 WriteLine();
-            }
         }
     }
 
@@ -99,16 +98,12 @@ public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
                 }
 
                 if (indent)
-                {
                     Write("    ");
-                }
 
                 Write(ref slices[i].Slice);
 
                 if (writeEndOfLines)
-                {
                     WriteLine();
-                }
             }
         }
         return this;
@@ -117,8 +112,6 @@ public class MarkdownMeshProRenderer : TextRendererBase<MarkdownMeshProRenderer>
     public void Write(char c, int count)
     {
         for (int i = 0; i < count; i++)
-        {
             Writer.Write(c);
-        }        
     }
 }
